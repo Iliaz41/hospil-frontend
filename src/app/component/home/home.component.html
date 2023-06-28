@@ -1,0 +1,43 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospil</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Karla:400,700&display=swap");
+
+    .font-family-mono {
+      font-family: mono;
+    }
+  </style>
+</head>
+<body class="bg-white font-family-mono h-screen text-black">
+  <div class="w-full flex flex-wrap">
+    <div class="w-full flex flex-col">
+      <div
+        class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24"
+      >
+        <a
+          href="/home"
+          class="bg-blue-400 text-white font-bold text-xl p-4 border-transparent rounded"
+          >Hospil</a
+        >
+      </div>
+      <div class="mt-60 flex flex-col justify-center">
+        <p class="text-center font-bold text-3xl">Hospital management</p>
+        <div class="text-center pt-12 pb-12">
+          <p>Join us!</p>
+          <button
+            (click)="onSubmit()"
+            class="bg-transparent hover:bg-gray-500 text-black-700 font-semibold hover:text-white py-2 px-4 border border-black-500 hover:border-transparent rounded"
+          >
+            Start here
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

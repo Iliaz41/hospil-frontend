@@ -1,0 +1,320 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Karla:400,700&display=swap");
+
+    .font-family-karla {
+      font-family: mono;
+    }
+  </style>
+</head>
+
+<body class="bg-white font-family-karla h-screen">
+  <div class="w-full flex flex-wrap">
+    <div class="w-full flex flex-col">
+      <div
+        class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12"
+      >
+        <a
+          href="/home"
+          class="bg-blue-400 text-white font-bold text-xl p-4 border-transparent rounded"
+          alt="Logo"
+          >Hospil</a
+        >
+      </div>
+      <div
+        class="mt-48 flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32"
+      >
+        <p class="mb-4 text-center font-bold text-black text-3xl">
+          New employee
+        </p>
+        <p
+          class="font-light text-center text-gray-500 lg:mb-8 sm:text-xl dark:text-gray-400"
+        >
+          To register a new employee, please fill out the form below with the
+          necessary information
+        </p>
+        <form
+          class="form"
+          [formGroup]="registerForm"
+          (ngSubmit)="onSubmitForm()"
+        >
+          <div class="flex flex-col pt-4">
+            <label for="name" class="text-lg">Name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              placeholder="John"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['name'].errors?.['required'] && (registerForm.controls['name']?.touched || registerForm.controls['name']?.dirty)"
+          >
+            Field is required!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['name'].errors?.['minlength'] && (registerForm.controls['name']?.touched || registerForm.controls['name']?.dirty)"
+          >
+            Name must contain at least 2 characters!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['name'].errors?.['maxlength'] && (registerForm.controls['name']?.touched || registerForm.controls['name']?.dirty)"
+          >
+            Name must contain maximum 50 characters!
+          </div>
+          <div class="flex flex-col pt-4">
+            <label for="surname" class="text-lg">Surname</label>
+            <input
+              type="text"
+              id="surname"
+              formControlName="surname"
+              placeholder="Smith"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['surname'].errors?.['required'] && (registerForm.controls['surname']?.touched || registerForm.controls['surname']?.dirty)"
+          >
+            Field is required!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['surname'].errors?.['minlength'] && (registerForm.controls['surname']?.touched || registerForm.controls['surname']?.dirty)"
+          >
+            Surname must contain at least 2 characters!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['surname'].errors?.['maxlength'] && (registerForm.controls['surname']?.touched || registerForm.controls['surname']?.dirty)"
+          >
+            Surname must contain maximum 50 characters!
+          </div>
+          <div class="flex flex-col pt-4">
+            <label for="email" class="text-lg">Email</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              placeholder="example@email.com"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['email'].errors?.['required'] && (registerForm.controls['email']?.touched || registerForm.controls['email']?.dirty)"
+          >
+            Field is required!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['email'].errors?.['pattern']"
+          >
+            Wrong email!
+          </div>
+          <div class="flex flex-col pt-4">
+            <label for="name" class="text-lg">Passport</label>
+            <input
+              type="text"
+              id="passport"
+              formControlName="passport"
+              placeholder="Passport"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['passport'].errors?.['required'] && (registerForm.controls['passport']?.touched || registerForm.controls['passport']?.dirty)"
+          >
+            Field is required!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['passport'].errors?.['minlength'] && (registerForm.controls['passport']?.touched || registerForm.controls['passport']?.dirty)"
+          >
+            Passport must contain at least 8 characters!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['passport'].errors?.['maxlength'] && (registerForm.controls['passport']?.touched || registerForm.controls['passport']?.dirty)"
+          >
+            Passport must contain maximum 20 characters!
+          </div>
+          <div class="flex flex-col pt-4">
+            <label for="name" class="text-lg">City</label>
+            <input
+              type="text"
+              id="city"
+              formControlName="city"
+              placeholder="City"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['city'].errors?.['minlength'] && (registerForm.controls['city']?.touched || registerForm.controls['city']?.dirty)"
+          >
+            City must contain at least 2 characters!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['city'].errors?.['maxlength'] && (registerForm.controls['city']?.touched || registerForm.controls['city']?.dirty)"
+          >
+            City must contain maximum 20 characters!
+          </div>
+          <div class="flex flex-col pt-4">
+            <label for="name" class="text-lg">Street</label>
+            <input
+              type="text"
+              id="street"
+              formControlName="street"
+              placeholder="Street"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['street'].errors?.['minlength'] && (registerForm.controls['street']?.touched || registerForm.controls['street']?.dirty)"
+          >
+            Street must contain at least 2 characters!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['street'].errors?.['maxlength'] && (registerForm.controls['street']?.touched || registerForm.controls['street']?.dirty)"
+          >
+            Street must contain maximum 20 characters!
+          </div>
+          <div class="flex flex-col pt-4">
+            <label for="name" class="text-lg">House</label>
+            <input
+              type="text"
+              id="house"
+              formControlName="house"
+              placeholder="House"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['house'].errors?.['minlength'] && (registerForm.controls['house']?.touched || registerForm.controls['house']?.dirty)"
+          >
+            House must contain at least 2 characters!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['house'].errors?.['maxlength'] && (registerForm.controls['house']?.touched || registerForm.controls['house']?.dirty)"
+          >
+            House must contain maximum 20 characters!
+          </div>
+          <div class="flex flex-col pt-4">
+            <label for="name" class="text-lg">Flat</label>
+            <input
+              type="text"
+              id="flat"
+              formControlName="flat"
+              placeholder="Flat"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['flat'].errors?.['minlength'] && (registerForm.controls['flat']?.touched || registerForm.controls['flat']?.dirty)"
+          >
+            Flat must contain at least 2 characters!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['flat'].errors?.['maxlength'] && (registerForm.controls['flat']?.touched || registerForm.controls['flat']?.dirty)"
+          >
+            Flat must contain maximum 20 characters!
+          </div>
+          <div class="flex flex-col pt-4">
+            <label for="role" class="text-lg">Position </label>
+            <select
+              id="role"
+              formControlName="role"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            >
+              <option value="ADMIN">Admin</option>
+              <option value="DOCTOR">Doctor</option>
+              <option value="NURSE">Nurse</option>
+              <option value="MANAGER">Manager</option>
+            </select>
+          </div>
+          <div class="flex flex-col pt-4">
+            <label for="name" class="text-lg">Phone number</label>
+            <input
+              type="text"
+              id="phone"
+              formControlName="phone"
+              placeholder="Phone"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['phone'].errors?.['minlength'] && (registerForm.controls['phone']?.touched || registerForm.controls['phone']?.dirty)"
+          >
+            Phone must contain at least 7 characters!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['phone'].errors?.['maxlength'] && (registerForm.controls['phone']?.touched || registerForm.controls['phone']?.dirty)"
+          >
+            Phone must contain maximum 20 characters!
+          </div>
+          <div class="flex flex-col pt-4">
+            <label for="password" class="text-lg">Password</label>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              placeholder="Password"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['password'].errors?.['required'] && (registerForm.controls['password']?.touched || registerForm.controls['password']?.dirty)"
+          >
+            Field is required!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['password'].errors?.['minlength'] && (registerForm.controls['password']?.touched || registerForm.controls['password']?.dirty)"
+          >
+            Password must contain at least 8 characters!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="registerForm.controls['password'].errors?.['maxlength'] && (registerForm.controls['password']?.touched || registerForm.controls['password']?.dirty)"
+          >
+            Password must contain maximum 20 characters!
+          </div>
+          <input
+            type="submit"
+            value="Register"
+            [disabled]="!registerForm.valid"
+            class="bg-blue-400 text-white font-bold text-lg hover:bg-blue-600 p-2 mt-8 disabled:bg-blue-100 border-transparent rounded"
+          />
+          <input
+            type="submit"
+            value="Back"
+            class="bg-blue-400 text-white font-bold text-lg hover:bg-blue-600 p-2 ml-2 mt-8 border-transparent rounded"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,93 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Karla:400,700&display=swap");
+
+    .font-family-mono {
+      font-family: mono;
+    }
+  </style>
+</head>
+
+<body class="bg-white font-family-mono h-screen">
+  <div class="w-full flex flex-wrap">
+    <div class="w-full flex flex-col">
+      <div class="pt-12 md:pl-12 md:-mb-24">
+        <a
+          href="/home"
+          class="bg-blue-400 text-white font-bold text-xl p-4 border-transparent rounded"
+          >Hospil</a
+        >
+      </div>
+      <div class="mt-32 pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+        <p class="text-blue-400 text-center text-3xl">Welcome</p>
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
+          <div class="flex flex-col pt-4">
+            <label for="email" class="text-lg">Email</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              required
+              placeholder="example@email.com"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="loginForm.controls['email'].errors?.['required'] && (loginForm.controls['email']?.touched || loginForm.controls['email']?.dirty)"
+          >
+            Field is required!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="loginForm.controls['email'].errors?.['pattern']"
+          >
+            Wrong email!
+          </div>
+          <div class="flex flex-col pt-4">
+            <label for="password" class="text-lg">Password</label>
+            <input
+              type="password"
+              required
+              id="password"
+              formControlName="password"
+              placeholder="********"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="loginForm.controls['password'].errors?.['required'] && (loginForm.controls['password']?.touched || loginForm.controls['password']?.dirty)"
+          >
+            Field is required!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="loginForm.controls['password'].errors?.['minlength'] && (loginForm.controls['password']?.touched || loginForm.controls['password']?.dirty)"
+          >
+            Password must contain at least 8 characters!
+          </div>
+          <div
+            class="text-red-600 text-sm"
+            *ngIf="loginForm.controls['password'].errors?.['maxlength'] && (loginForm.controls['password']?.touched || loginForm.controls['password']?.dirty)"
+          >
+            Password must contain maximum 20 characters!
+          </div>
+          <input
+            type="submit"
+            value="Log In"
+            [disabled]="!loginForm.valid"
+            class="bg-blue-400 text-white font-bold text-lg hover:bg-blue-600 p-2 mt-8 disabled:bg-blue-100 border-transparent rounded"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
